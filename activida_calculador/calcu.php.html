@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Calculadora</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Fondo gris claro */
+            font-family: 'Raleway', sans-serif; /* Tipo de letra */
+        }
+
+        #contenedor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #calculadora {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            background-color: #a39f9f; /* Fondo de la calculadora */
+        }
+
+        /* Alinea los botones en una fila */
+        .boton {
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-color: #303131; /* Gris oscuro para los botones */
+            color: #ffffff; /* Texto blanco para los botones */
+        }
+
+        #Resultado {
+            color: #000000; /* Texto negro para el resultado */
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="contenedor">
+        <div id="calculadora">
+            <h1 class="text-center mb-4">Calculadora</h1>
+
+            <form>
+                <div class="mb-3">
+                    <label for="numero1" class="form-label">Número 1</label>
+                    <input type="number" max="10000" min="0" class="form-control" placeholder="0" id="numero1" autofocus>
+                </div>
+
+                <div class="mb-3">
+                    <label for="numero2" class="form-label">Número 2</label>
+                    <input type="number" max="10000" min="0" class="form-control" placeholder="0" id="numero2">
+                </div>
+
+                <hr>
+
+                <div class="mb-3">
+                    <!-- Botones en una fila -->
+                    <input type="button" class="btn boton" onclick="Sumar()" value="Sumar">
+                    <input type="button" class="btn boton" onclick="Restar()" value="Restar">
+                    <input type="button" class="btn boton" onclick="Multiplicacion()" value="Multiplicación">
+                    <input type="button" class="btn boton" onclick="Division()" value="División">
+                    <input type="button" class="btn boton" onclick="Potenciacion()" value="Potenciación">
+                </div>
+            </form>
+
+            <hr>
+
+            <div id="Resultado"></div>
+        </div>
+    </div>
+
+    <script>
+        var R = document.getElementById("Resultado");
+
+        function Propiedades() {
+            R.style.borderStyle = "Solid";
+            R.style.fontFamily = "'Raleway', sans-serif"; /* Tipo de letra */
+        }
+
+        function obtenerValores() {
+            var n1 = document.getElementById("numero1").value;
+            n1 = parseInt(n1, 10);
+            var n2 = document.getElementById("numero2").value;
+            n2 = parseInt(n2, 10);
+            return [n1, n2];
+        }
+
+        function Sumar() {
+            [n1, n2] = obtenerValores();
+            Propiedades();
+            R.innerHTML = "La suma de los números es: " + (n1 + n2);
+        }
+
+        function Restar() {
+            [n1, n2] = obtenerValores();
+            Propiedades();
+            R.innerHTML = "La resta de los números es: " + (n1 - n2);
+        }
+
+        function Multiplicacion() {
+            [n1, n2] = obtenerValores();
+            Propiedades();
+            R.innerHTML = "La multiplicación de los números es: " + (n1 * n2);
+        }
+
+        function Division() {
+            [n1, n2] = obtenerValores();
+            Propiedades();
+            if (n2 === 0)
+                R.innerHTML = "Error: División por 0";
+            else
+                R.innerHTML = "La división de los números es: " + (n1 / n2);
+        }
+
+        function Potenciacion() {
+            [n1, n2] = obtenerValores();
+            Propiedades();
+            R.innerHTML = "La potenciación de los números es: " + (Math.pow(n1, n2));
+        }
+    </script>
+
+</body>
+
+</html>
